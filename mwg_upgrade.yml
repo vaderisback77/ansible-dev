@@ -1,0 +1,17 @@
+---
+- name: Upgrade McAfee WebGateway Appliance Script
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Performing Configuration Backup
+
+    - name: Downloading the Yum Package to the McAfee WebGateway
+    
+    - name: Rebooting the WebGateway Appliance
+
+    - name: Post Reboot Checks
+
+    - name: Code Upgrade Verifications "mwg-info version"
+
+    
