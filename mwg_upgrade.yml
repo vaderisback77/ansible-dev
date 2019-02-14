@@ -5,13 +5,22 @@
 
   tasks:
     - name: Performing Configuration Backup
+      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
 
-    - name: Downloading the Yum Package to the McAfee WebGateway
-    
-    - name: Rebooting the WebGateway Appliance
+    - name: Creating Repository configuration for the sticky MWG (release)
+      command: mwg-switch-repo --sticky 7.8.1.6
+      
+      register:  print_output
 
-    - name: Post Reboot Checks
+    - debug:  var=print_output.stdout_lines
+      
+    - name: save output to a file
+      copy: content="{{ print_output.stdout[0] }}" dest="./output/{{ inventory_hostname }}.txt"
 
-    - name: Code Upgrade Verifications "mwg-info version"
+    - name: Upgrade the McAfee Appliance
+      yum:
+        name: "*"
+        state: latest
 
-    
+
+      
