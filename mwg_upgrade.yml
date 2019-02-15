@@ -1,26 +1,83 @@
 ---
-- name: Upgrade McAfee WebGateway Appliance Script
+- name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
   hosts: all
   gather_facts: false
 
   tasks:
-    - name: Performing Configuration Backup
+    - name: Performing Configuration Backup on the McAfee WebGateway
       command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
-
-    - name: Creating Repository configuration for the sticky MWG (release)
-      command: mwg-switch-repo --sticky 7.8.1.6
-      
       register:  print_output
-
     - debug:  var=print_output.stdout_lines
-      
-    - name: save output to a file
-      copy: content="{{ print_output.stdout[0] }}" dest="./output/{{ inventory_hostname }}.txt"
 
-    - name: Upgrade the McAfee Appliance
+    - name: Creating Repository configuration for the sticky MWG (release 7.8.1.6)
+      command: mwg-switch-repo --sticky 7.8.1.6
+      register:  print_output
+    - debug:  var=print_output.stdout_lines
+
+    - name: Upgrade the McAfee WebGateway to 7.8.1.6
       yum:
         name: "*"
-        state: latest
+        state: present
+    
+    -  name: Rebooting McAfee WebGateway Appliance in 30 seconds
+       shell: "sleep 30 and reboot"
+       async: 1
+       poll: 0
+
+    - name: Pause to wait for Reboot to finish
+      pause:
+           minutes: 5
+    
+    - name: wait for the McAfee WebGateway Appliance to reboot
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 60   
+
+    - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
+      command: mwg-switch-repo --sticky 7.8.2.5
+      register:  print_output
+    - debug:  var=print_output.stdout_lines
+
+    - name: Upgrade the McAfee WebGateway to 7.8.2.5
+      yum:
+        name: "*"
+        state: present 
+
+
+    - name: Pause to wait for Reboot to finish
+      pause:
+           minutes: 5
+    
+    - name: wait for the McAfee WebGateway Appliance to reboot
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 60         
+
+    - name: McAfee WebGateway upgraded version    
+      command: mwg-info version
+      register: print_output
+
+    - debug: var=print_output.stdout_lines
+
+
+    - name: Post-Upgrade checks on McAfee WebGateway
+      commands: 
+        - " ping 4.2.2.2 "
+        - " ping www.oracle.com "
+
+
+
+
+
+
+
+
+    
+
 
 
       
