@@ -1,7 +1,7 @@
 ---
 - name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
   hosts: all
-  gather_facts: false
+  gather_facts: True
 
   tasks:
     - name: Performing Configuration Backup on the McAfee WebGateway
@@ -71,6 +71,11 @@
       register: print_output
 
     - debug: var=print_output.stdout_lines  
+
+
+    - name: Signal a successful upgrade
+      set_fact:
+         install_status: "MWG Upgrade done"
 
 
 
