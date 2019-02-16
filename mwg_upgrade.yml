@@ -10,7 +10,7 @@
       register:  print_output
     - debug:  var=print_output.stdout_lines
 
-    - name: Creating Repository configuration for the sticky MWG (release 7.8.1.6)
+    - name: Creating Repository configuration for the sticky MWG (Intermediate release 7.8.1.6)
       command: mwg-switch-repo --sticky 7.8.1.6
       register:  print_output
     - debug:  var=print_output.stdout_lines
