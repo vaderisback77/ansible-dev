@@ -11,7 +11,7 @@
     - debug:  var=print_output.stdout_lines
 
     - name: Creating Repository configuration for the sticky MWG (release 7.8.1.6)
-      command: " mwg-switch-repo --sticky 7.8.1.6 "
+      command: mwg-switch-repo --sticky 7.8.1.6
       register:  print_output
     - debug:  var=print_output.stdout_lines
 
@@ -20,14 +20,14 @@
         name: “*”
         state: latest 
 
-    -  name: Rebooting McAfee WebGateway Appliance in 10 seconds
+    -  name: Rebooting McAfee WebGateway Appliance in 15 seconds
        shell:  sleep 15 && reboot
-       async: 600
-       poll: 10
+       async: 900
+       poll: 15
 
-    - name: Pause to wait for Reboot to finish
+    - name: Pause 15 minutes to wait for Reboot to finish
       pause:
-           minutes: 5
+           minutes: 15
     
     - name: wait for the McAfee WebGateway Appliance to reboot
       wait_for_connection:
@@ -46,14 +46,14 @@
         name: "*"
         state: latest
 
-    -  name: Rebooting McAfee WebGateway Appliance in 10 seconds
+    -  name: Rebooting McAfee WebGateway Appliance in 15 seconds
        shell:  sleep 15 && reboot
-       async: 600
-       poll: 10
+       async: 900
+       poll: 15
 
     - name: Pause to wait for Reboot to finish
       pause:
-           minutes: 10
+           minutes: 15
     
     - name: wait for the McAfee WebGateway Appliance to reboot
       wait_for_connection:
