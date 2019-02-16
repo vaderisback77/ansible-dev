@@ -1,3 +1,6 @@
+# Written in Ansible version 2.7.6
+# Author: Saurabh Saran
+
 ---
 - name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
   hosts: all
