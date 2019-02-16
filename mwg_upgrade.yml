@@ -69,7 +69,7 @@
 
     - name: Signal a successful upgrade
       set_fact:
-         install_status: "MWG Upgrade done"
+         install_status: "MWG Upgrade to Release 7.8.2.5 Completed."
 
 
 
