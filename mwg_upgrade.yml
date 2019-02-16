@@ -1,28 +1,29 @@
 ---
 - name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
   hosts: all
-  gather_facts: True
+  gather_facts: False
 
   tasks:
+
     - name: Performing Configuration Backup on the McAfee WebGateway
       command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
       register:  print_output
     - debug:  var=print_output.stdout_lines
 
     - name: Creating Repository configuration for the sticky MWG (release 7.8.1.6)
-      command: mwg-switch-repo --sticky 7.8.1.6
+      command: " mwg-switch-repo --sticky 7.8.1.6 "
       register:  print_output
     - debug:  var=print_output.stdout_lines
 
     - name: Upgrade the McAfee WebGateway to 7.8.1.6
       yum:
-        name: "*"
-        state: present
-    
-    -  name: Rebooting McAfee WebGateway Appliance in 30 seconds
-       shell: "sleep 30 and reboot"
-       async: 1
-       poll: 0
+        name: “*”
+        state: latest 
+
+    -  name: Rebooting McAfee WebGateway Appliance in 10 seconds
+       shell:  sleep 15 && reboot
+       async: 600
+       poll: 10
 
     - name: Pause to wait for Reboot to finish
       pause:
@@ -43,12 +44,16 @@
     - name: Upgrade the McAfee WebGateway to 7.8.2.5
       yum:
         name: "*"
-        state: present 
+        state: latest
 
+    -  name: Rebooting McAfee WebGateway Appliance in 10 seconds
+       shell:  sleep 15 && reboot
+       async: 600
+       poll: 10
 
     - name: Pause to wait for Reboot to finish
       pause:
-           minutes: 5
+           minutes: 10
     
     - name: wait for the McAfee WebGateway Appliance to reboot
       wait_for_connection:
@@ -62,20 +67,22 @@
       register: print_output
     - debug: var=print_output.stdout_lines
 
-
-    - name: Post-Upgrade checks on McAfee WebGateway
-      commands: 
-        - " ping 4.2.2.2 "
-        - " ping www.oracle.com "
-      register: print_output
-    - debug: var=print_output.stdout_lines 
-
-
     - name: Signal a successful upgrade
       set_fact:
          install_status: "MWG Upgrade done"
 
 
+
+
+
+
+
+       
+
+
+
+
+       
 
 
 
@@ -88,3 +95,4 @@
 
 
       
+
