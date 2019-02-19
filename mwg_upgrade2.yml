@@ -19,15 +19,38 @@
       register:  print_output
     - debug:  var_2=print_output.stdout_lines
 
-    - name: Performing yum upgrades yum
+    - name: Executing "yum upgrades yum" command
       command: yum -y upgrade yum
       register:  print_output
     - debug:  var_3=print_output.stdout_lines
 
-    - name: Performing yum upgrades
+    - name: Executing Yum Upgrades
       command: yum -y upgrade 
       register:  print_output
     - debug:  var_4=print_output.stdout_lines
+
+    - name: McAfee WebGateway upgraded version    
+      command: mwg-info version
+      register: print_output
+    - debug: var_5=print_output.stdout_lines
+
+    - name: Signal a successful upgrade
+      set_fact:
+         install_status: "MWG Upgrade to Release 7.8.2.5 Completed."
+
+    - name: print_outs
+      debug:
+      msg: "{{ item }}"
+      with_items:
+      - var_1
+      - var_2
+      - var_3
+      - var_4
+
+      
+
+
+
 
     
 
