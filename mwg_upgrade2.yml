@@ -1,0 +1,38 @@
+# Written in Ansible version 2.7.6
+# Author: Saurabh Saran
+
+
+---
+- name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
+  hosts: all
+  gather_facts: False
+
+  tasks:
+
+    - name: Performing Configuration Backup on the McAfee WebGateway
+      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
+      register:  print_output
+    - debug:  var_1=print_output.stdout_lines
+
+    - name: Creating Repository configuration for the sticky MWG (Intermediate release 7.8.2.5)
+      command: mwg-switch-repo --sticky 7.8.2.5
+      register:  print_output
+    - debug:  var_2=print_output.stdout_lines
+
+    - name: Performing yum upgrades yum
+      command: yum -y upgrade yum
+      register:  print_output
+    - debug:  var_3=print_output.stdout_lines
+
+    - name: Performing yum upgrades
+      command: yum -y upgrade 
+      register:  print_output
+    - debug:  var_4=print_output.stdout_lines
+
+    
+
+
+
+
+
+
