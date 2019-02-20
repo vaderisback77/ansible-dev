@@ -62,7 +62,7 @@
         timeout: 60
 
     - name: McAfee WebGateway upgraded version
-      command: mwg-info version
+      command: mwg-info versionroot
       register: print_output
     - debug: var=print_output.stdout_lines
 
