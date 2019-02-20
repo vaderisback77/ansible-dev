@@ -41,8 +41,8 @@
 
     - name: McAfee WebGateway upgraded version    
       command: mwg-info version
-      register: print_output_5
-    - debug: var=print_output_5.stdout_lines
+      register: print_output
+    - debug: var=print_output.stdout_lines
 
     - name: Signal a successful upgrade
       set_fact:
