@@ -11,27 +11,26 @@
 
     - name: Performing Configuration Backup on the McAfee WebGateway
       command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
-      register:  print_output_1
-      ignore_errors: True
-    - debug:  var=print_output_1.stdout_lines
+      register: cmd_output_1
+    - debug:  var=cmd_output_1.stdout_lines
 
     - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
       command: mwg-switch-repo --sticky 7.8.2.5
-      register:  print_output_2
-    - debug:  var=print_output_2.stdout_lines
+      register:  cmd_output_2
+    - debug:  var=cmd_output_2.stdout_lines
 
-    - name: Executing "yum upgrades yum" command
+    - name: Executing "yum upgrades yum" command --- intermediate (7.8.1.6)
       command: yum -y upgrade yum
-      register:  print_output_3
-    - debug:  var=print_output_3.stdout_lines
+      register:  cmd_output_3
+    - debug:  var=cmd_output_3.stdout_lines
 
-    - name: Executing Yum Upgrades
+    - name: Executing Yum Upgrades  --- 7.8.2.5 (reboot)
       command: yum -y upgrade 
-      register: print_output_4
+      register: cmd_output_4
       async: 3600
       poll: 30
 
-    - name: Wait for the reboot and reconnect 
+    - name: Waiting for the reboot and reconnecting to MWG Appliance 
       wait_for:
         port: 22
         search_regex: OpenSSH
@@ -39,10 +38,19 @@
         timeout: 60
       connection: local
 
-    - name: McAfee WebGateway upgraded version    
+    - name: McAfee WebGateway upgraded new version    
       command: mwg-info version
-      register: print_output_5
-    - debug: var=print_output_5.stdout_lines
+      register: cmd_output_5
+    - debug: var=cmd_output_5.stdout_lines
+
+   # - name: copy content to file
+    #  local_action: copy content="{{ vars[item] }}" dest="./output/-{{ item }}-{{ ansible_date_time.date }}-{{ ansible_hostname }}.log"
+     # with_items:
+      #- {{ cmd_output_1 }}
+      #- {{ cmd_output_2 }}
+      #- {{ cmd_output_3 }}
+      #- {{ cmd_output_4 }}
+      #- {{ cmd_output_5 }}
 
     - name: Signal a successful upgrade
       set_fact:

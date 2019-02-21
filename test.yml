@@ -12,7 +12,6 @@
     - name: Performing Configuration Backup on the McAfee WebGateway
       command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
       register:  print_output_1
-      ignore_errors: True
     - debug:  var=print_output_1.stdout_lines
 
     - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
@@ -28,7 +27,7 @@
     - name: Executing Yum Upgrades
       command: yum -y upgrade 
       register: print_output_4
-      async: 2700
+      async: 3600
       poll: 30
 
     - name: Wait for the reboot and reconnect 
