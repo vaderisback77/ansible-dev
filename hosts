@@ -1,3 +1,7 @@
-[mwg]
+[mwg_secondary]
 
 192.168.0.200
+
+[mwg_primary]
+
+192.168.0.201

@@ -4,29 +4,44 @@
 
 ---
 - name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
-  hosts: all
+  hosts: mwg_primary
   gather_facts: False
 
   tasks:
+#    - name: Checking health of the Backup Web Gateway before Proceeding with the Upgrades
+#      hosts: mwg_secondary
+#      command: "{{ item }}"
+#      with_items:
+#        - ping 4.2.2.2
+#        - ping www.google.com
+#      register: ping_output
+#      debug: var=ping_output.stdout_lines
+        
 
     - name: Performing Configuration Backup on the McAfee WebGateway
-      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
-      register: cmd_output_1
-    - debug:  var=cmd_output_1.stdout_lines
+      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/{{ inventory_hostname }}.backup"
+      register: mwg_backup_output
+    - debug:  var=mwg_backup.stdout_lines
+
+#    - name: Capturing UUID of the McAfee Web Gateway
+#      command: cat uuid
+#      args:
+#         chdir: /etc/mwg
+#      register: mwg_uuid    
 
     - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
       command: mwg-switch-repo --sticky 7.8.2.5
-      register:  cmd_output_2
-    - debug:  var=cmd_output_2.stdout_lines
+      register:  mwg_sticky_cmd_output
+    - debug:  var=mwg_sticky_cmd_output.stdout_lines
 
     - name: Executing "yum upgrades yum" command --- intermediate (7.8.1.6)
       command: yum -y upgrade yum
-      register:  cmd_output_3
-    - debug:  var=cmd_output_3.stdout_lines
+      register:  yum_upgrd_yum_output
+    - debug:  var=yum_upgrd_yum_output.stdout_lines
 
     - name: Executing Yum Upgrades  --- 7.8.2.5 (reboot)
       command: yum -y upgrade 
-      register: cmd_output_4
+      register: final_yum_upgrade_output
       async: 3600
       poll: 30
 
@@ -40,8 +55,8 @@
 
     - name: McAfee WebGateway upgraded new version    
       command: mwg-info version
-      register: cmd_output_5
-    - debug: var=cmd_output_5.stdout_lines
+      register: mwg_final_ver_output
+    - debug: var=mwg_final_ver_output.stdout_lines
 
    # - name: copy content to file
     #  local_action: copy content="{{ vars[item] }}" dest="./output/-{{ item }}-{{ ansible_date_time.date }}-{{ ansible_hostname }}.log"

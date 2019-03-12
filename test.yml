@@ -8,45 +8,19 @@
   gather_facts: False
 
   tasks:
-
-    - name: Performing Configuration Backup on the McAfee WebGateway
-      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/current.backup"
-      register:  print_output_1
-    - debug:  var=print_output_1.stdout_lines
-
-    - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
-      command: mwg-switch-repo --sticky 7.8.2.5
-      register:  print_output_2
-    - debug:  var=print_output_2.stdout_lines
-
-    - name: Executing "yum upgrades yum" command
-      command: yum -y upgrade yum
-      register:  print_output_3
-    - debug:  var=print_output_3.stdout_lines
-
-    - name: Executing Yum Upgrades
-      command: yum -y upgrade 
-      register: print_output_4
-      async: 3600
-      poll: 30
-
-    - name: Wait for the reboot and reconnect 
-      wait_for:
-        port: 22
-        search_regex: OpenSSH
-        delay: 10
-        timeout: 60
-      connection: local
-
-    - name: McAfee WebGateway upgraded version    
-      command: mwg-info version
-      register: print_output
-    - debug: var=print_output.stdout_lines
-
-    - name: Signal a successful upgrade
-      set_fact:
-         install_status: "MWG Upgrade to Release 7.8.2.5 Completed."
-
-
+   - name: Checking health of the Backup Web Gateway before Proceeding with the Upgrades
+     hosts: mwg_secondary
+     command: "{{ item }}"
+     with_items:
+         - ping 4.2.2.2
+         - ping www.google.com
+     register: ping_output
+     debug: var=ping_output.stdout_lines
+  
+   - name: Capturing UUID of the McAfee Web Gateway
+     command: cat uuid
+     args:
+         chdir: /etc/mwg
+     register: mwg_uuid   
 
 
