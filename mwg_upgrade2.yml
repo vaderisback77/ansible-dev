@@ -1,51 +1,64 @@
 # Written in Ansible version 2.7.6
 # Author: Saurabh Saran
 
-
+# McAfee Upgrade Script for upgrading the unit to Main Release 7.8.2.7
+# NOTE: Please force offline the target McAfee Appliance from the respective Load Balancer VIP before proceeding with this upgrade script.
+# NOTE: Host file needs to be changed to include the Fully qualified domain names of
 ---
-- name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
-  hosts: mwg_primary
-  gather_facts: False
+# McAfee Upgrade Pre-checks
+
+# On Backup Node
+- name: Running Health checks on the backup unit before proceeding with Upgrades on the Primary WebGateway
+  hosts: mwg_secondary
 
   tasks:
-#    - name: Checking health of the Backup Web Gateway before Proceeding with the Upgrades
-#      hosts: mwg_secondary
-#      command: "{{ item }}"
-#      with_items:
-#        - ping 4.2.2.2
-#        - ping www.google.com
-#      register: ping_output
-#      debug: var=ping_output.stdout_lines
-        
+    - name: Checking reachability to the Internet destinations from the backup unit.
+      command: " {{ item}} "
+      with_items:
+            - ping www.google.com -c 2
+            - ping 4.2.2.2 -c 2
+      register: result
+    - debug:
+         msg: "Successful ping on {{inventory_hostname}} to Internet"
 
+# On Target Node
+# PRE-CHECKS ####
+- name: Upgrade McAfee WebGateway Script (Release 7.8.2.7)
+  hosts: mwg_primary
+
+  tasks:
     - name: Performing Configuration Backup on the McAfee WebGateway
       command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/{{ inventory_hostname }}.backup"
       register: mwg_backup_output
     - debug:  var=mwg_backup.stdout_lines
 
-#    - name: Capturing UUID of the McAfee Web Gateway
-#      command: cat uuid
-#      args:
-#         chdir: /etc/mwg
-#      register: mwg_uuid    
+    - name: Capturing UUID of the McAfee WebGateway
+      command: cat uuid
+      args:
+         chdir: /etc/mwg
+      register: mwg_uuid
+    - debug:  var=mwg_uuid.stdout_lines
 
-    - name: Creating Repository configuration for the sticky MWG (release 7.8.2.5)
-      command: mwg-switch-repo --sticky 7.8.2.5
+# UPGRADE START
+
+    - name: Creating Repository configuration for the sticky McAfee WebGateway ( to release 7.8.2.7)
+      command: mwg-switch-repo --sticky 7.8.2.7
       register:  mwg_sticky_cmd_output
     - debug:  var=mwg_sticky_cmd_output.stdout_lines
 
-    - name: Executing "yum upgrades yum" command --- intermediate (7.8.1.6)
+
+    - name: Executing "yum upgrades yum" command for MLOS2 --> MLOS3 Upgrades.
       command: yum -y upgrade yum
       register:  yum_upgrd_yum_output
     - debug:  var=yum_upgrd_yum_output.stdout_lines
 
-    - name: Executing Yum Upgrades  --- 7.8.2.5 (reboot)
-      command: yum -y upgrade 
+    - name: Executing Yum Upgrades  --- 7.8.2.7 (reboot)
+      command: yum -y upgrade
       register: final_yum_upgrade_output
       async: 3600
       poll: 30
 
-    - name: Waiting for the reboot and reconnecting to MWG Appliance 
+    - name: Waiting for the reboot and reconnection to McAfee WebGateway
       wait_for:
         port: 22
         search_regex: OpenSSH
@@ -53,24 +66,23 @@
         timeout: 60
       connection: local
 
-    - name: McAfee WebGateway upgraded new version    
+# On Target Node
+# POST-CHECKS ####
+
+    - name: McAfee WebGateway Upgraded version
       command: mwg-info version
       register: mwg_final_ver_output
     - debug: var=mwg_final_ver_output.stdout_lines
 
-   # - name: copy content to file
-    #  local_action: copy content="{{ vars[item] }}" dest="./output/-{{ item }}-{{ ansible_date_time.date }}-{{ ansible_hostname }}.log"
-     # with_items:
-      #- {{ cmd_output_1 }}
-      #- {{ cmd_output_2 }}
-      #- {{ cmd_output_3 }}
-      #- {{ cmd_output_4 }}
-      #- {{ cmd_output_5 }}
+    - name: Checking reachability to the Internet destinations from the Primary Unit post-upgrades.
+      command: " {{ item}} "
+      with_items:
+            - ping www.google.com -c 2
+            - ping 4.2.2.2 -c 2
+      register: result
+    - debug:
+         msg: "Successful ping on {{inventory_hostname}} to Internet"
 
     - name: Signal a successful upgrade
       set_fact:
          install_status: "MWG Upgrade to Release 7.8.2.5 Completed."
-
-
-
-

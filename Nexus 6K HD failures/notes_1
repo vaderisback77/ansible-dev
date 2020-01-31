@@ -1,0 +1,6 @@
+cutil directory where dplugins are stored:
+
+Command I used to copy:
+scp -r NXOSdplugin/ saurasar@cutil:/home/software/cisco/dplugin
+
+/home/software/cisco/dplugin

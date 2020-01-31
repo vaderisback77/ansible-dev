@@ -1,0 +1,102 @@
+# Written in Ansible version 2.7.6
+# Author: Saurabh Saran
+
+# McAfee Upgrade Script for upgrading the unit from 7.8.x release to current OCIC standard Release 7.8.2.7
+# NOTE: Please force offline the target McAfee Appliance from the respective Load Balancer VIP before proceeding with this upgrade script.
+# NOTE: Host file needs to be changed to include the Fully qualified domain names of 
+---
+# McAfee Upgrade Pre-checks 
+
+# On Backup Node
+- name: Running Health checks on the backup unit before proceeding with Upgrades on the Primary WebGateway
+  hosts: mwg_secondary
+
+  tasks:
+    - name: Checking reachability to the Internet destinations from the backup unit.
+      command: " {{ item}} "
+      with_items:
+            - ping www.google.com -c 2
+            - ping 4.2.2.2 -c 2
+      register: result
+    - debug:  
+         msg: "Successful ping on {{inventory_hostname}} to Internet"   
+
+# On Target Node
+# PRE-CHECKS ####
+- name: Upgrade McAfee WebGateway Script (Release 7.8.2.7)
+  hosts: mwg_primary
+
+  tasks:
+    - name: Performing Configuration Backup on the McAfee WebGateway
+      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/{{ inventory_hostname }}.backup"
+      register: mwg_backup_output
+    - debug:  var=mwg_backup_output.stdout_lines
+
+    - name: Capturing UUID of the McAfee WebGateway
+      command: cat uuid
+      args:
+         chdir: /etc/mwg
+      register: mwg_uuid    
+    - debug:  var=mwg_uuid.stdout_lines
+
+# UPGRADE START
+
+    - name: Creating Repository configuration for the sticky McAfee WebGateway ( to release 7.8.2.7)
+      command: mwg-switch-repo --sticky 7.8.2.7
+      register:  mwg_sticky_cmd_output
+    - debug:  var=mwg_sticky_cmd_output.stdout_lines
+
+    - name: Upgrade the McAfee WebGateway to 7.8.2.7
+      command: yum -y upgrade 
+      register:  yum_upgrade_output
+    - debug:  var=yum_upgrade_output.stdout_lines  
+
+    -  name: Rebooting McAfee WebGateway Appliance
+       shell: reboot
+       async: 1
+       poll: 0
+
+# Ping the Gateway IP address while this task is in Progress. If the node is pingable before the 'Pause' ends, continue on to the next tasks
+    - name: 10 min Pause to wait for Reboot to finish
+      pause:
+           minutes: 10
+
+# On Target Node
+# POST-CHECKS ####
+
+
+    - name: Testing re-connection to the Appliance
+      wait_for:
+        port: 22
+        search_regex: OpenSSH
+        delay: 10
+        timeout: 60
+      connection: local
+
+    - name: McAfee WebGateway Upgraded Version   
+      command: mwg-info version
+      register: mwg_final_ver_output
+    - debug: var=mwg_final_ver_output.stdout_lines
+
+    - name: Checking reachability to the Internet destinations from the Primary Unit post-upgrades.
+      command: " {{ item}} "
+      with_items:
+            - ping www.google.com -c 2
+            - ping 4.2.2.2 -c 2
+      register: result_final
+    - debug:  
+         msg: "Successful ping on {{inventory_hostname}} to Internet"  
+
+    - name: Signal a successful upgrade
+      set_fact:
+         install_status: "MWG Upgrade to Release 7.8.2.7 Completed."
+
+
+
+
+
+
+
+       
+
+

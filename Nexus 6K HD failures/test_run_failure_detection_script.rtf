@@ -1,0 +1,180 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww19720\viewh13480\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 [saurasar@ord12-p-secnet-bastion-01 ~]$ ansible-playbook 6k.failure.detection.yml -t test0 -u net_service -k\
+SSH password:\
+ [WARNING]: Could not match supplied host pattern, ignoring: nxos-6k\
+\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-ppc-c1r121-acc-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-ppc-c1r121-acc-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-pob-dist-3.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-pob-dist-3.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-ppc-c1r223-acc-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-ppc-c1r223-acc-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-ppc-c1r323-agg-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-ppc-c1r323-agg-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-pob-c1r416-agg-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-pob-c1r416-agg-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-ppc-c1r324-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-ppc-c1r324-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-sparc-c1r618-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-sparc-c1r618-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-ppc-c1r323-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-ppc-c1r323-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-pob-c1r506-agg-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-pob-c1r506-agg-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+^@ok: [ord12-rsp-edge-acc-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-edge-acc-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-rsp-c1r506-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-c1r506-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-rsp-edge-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-edge-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-pob-c1r506-agg-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-pob-c1r506-agg-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-rsp-dist-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-dist-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+^@ok: [ord12-rsp-dist-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-dist-1.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-rsp-c1r506-acc-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-rsp-c1r506-acc-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-pob-c1r616-agg-2.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-pob-c1r616-agg-2.uspp1.oraclecloud.com]\
+\
+PLAY [Detecting NXOS 5K devices which fail the 'copy run start' from device inventory] *********************************************************************************\
+\
+TASK [Executing 'copy run start' on NXOS 5K chassis] *******************************************************************************************************************\
+ok: [ord12-toa-c1r422-acc-1.uspp1.oraclecloud.com]\
+\
+TASK [Copy the device name to failed device list] **********************************************************************************************************************\
+skipping: [ord12-toa-c1r422-acc-1.uspp1.oraclecloud.com]\
+\
+PLAY RECAP *************************************************************************************************************************************************************\
+ord12-pob-c1r416-agg-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-pob-c1r506-agg-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-pob-c1r506-agg-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-pob-c1r616-agg-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-pob-dist-3.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-ppc-c1r121-acc-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-ppc-c1r223-acc-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-ppc-c1r323-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-ppc-c1r323-agg-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-ppc-c1r324-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-c1r506-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-c1r506-acc-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-dist-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-dist-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-edge-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-rsp-edge-acc-2.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-sparc-c1r618-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+ord12-toa-c1r422-acc-1.uspp1.oraclecloud.com : ok=1    changed=0    unreachable=0    failed=0\
+\
+[saurasar@ord12-p-secnet-bastion-01 ~]$\
+\
+\
+}

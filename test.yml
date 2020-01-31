@@ -3,24 +3,87 @@
 
 
 ---
-- name: Upgrade McAfee WebGateway Appliance Script (Release 7.8.2.5)
-  hosts: all
-  gather_facts: False
+- name: Running Health checks on the backup unit before proceeding with Upgrades on the Primary WebGateway
+  hosts: mwg_secondary
 
   tasks:
-   - name: Checking health of the Backup Web Gateway before Proceeding with the Upgrades
-     hosts: mwg_secondary
-     command: "{{ item }}"
-     with_items:
-         - ping 4.2.2.2
-         - ping www.google.com
-     register: ping_output
-     debug: var=ping_output.stdout_lines
-  
-   - name: Capturing UUID of the McAfee Web Gateway
-     command: cat uuid
-     args:
+    - name: Checking reachability to the Internet destinations from the backup unit.
+      command: " {{ item}} "
+      with_items:
+            - ping www.google.com -c 2
+            - ping 4.2.2.2 -c 2
+      register: result
+    - debug:  
+         msg: "Successful ping on {{inventory_hostname}} to Internet"   
+
+# On Target Node
+# PRE-CHECKS ####
+- name: Upgrade McAfee WebGateway Script (Release 7.8.2.7)
+  hosts: mwg_primary
+
+  tasks:
+    - name: Performing Configuration Backup on the McAfee WebGateway
+      command: /opt/mwg/bin/mwg-coordinator -B "file:in=ACTIVE,out=/tmp/{{ inventory_hostname }}.backup"
+      register: mwg_backup_output
+    - debug:  var=mwg_backup_output.stdout_lines
+
+    - name: Capturing UUID of the McAfee WebGateway
+      command: cat uuid
+      args:
          chdir: /etc/mwg
-     register: mwg_uuid   
+      register: mwg_uuid    
+    - debug:  var=mwg_uuid.stdout_lines
+
+# UPGRADE START
+
+    - name: Creating Repository configuration for the sticky McAfee WebGateway ( to release 7.8.2.7)
+      command: mwg-switch-repo --sticky 7.8.2.7
+      register:  mwg_sticky_cmd_output
+    - debug:  var=mwg_sticky_cmd_output.stdout_lines
+
+    - name: Upgrade the McAfee WebGateway to 7.8.2.7
+      command: yum upgrade -y
+      register:  yum_upgrade_output
+    - debug:  var=yum_upgrade_output.stdout_lines  
+
+    -  name: Rebooting McAfee WebGateway Appliance
+       shell: reboot
+       tags:
+        - upgrade
+       async: 3600
+       poll: 0
+
+    - name: McAfee WebGateway Upgraded version   
+      shell: mwg-info version
+      register: mwg_final_ver_output
+      until:
+        - "mwg_final_ver_output is success"
+        - "'28225'in mwg_final_ver_output.stdout_lines "
+      delay: 30
+      retries: 80
+      tags:
+        - upgrade
+      ignore_errors: True  
+
+# On Target Node
+# POST-CHECKS ####
+
+    - name: McAfee WebGateway upgraded version    
+      command: mwg-info version
+      register: print_output
+    - debug: var=print_output.stdout_lines
+      tags:
+        - upgrade
+
+
+
+    
+
+
+
+
+
+
+
 
 

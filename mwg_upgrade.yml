@@ -29,11 +29,11 @@
        async: 900
        poll: 15
 
-    - name: Pause 15 minutes to wait for Reboot to finish
+    - name: Pause 10 minutes to wait for Reboot to finish
       pause:
            minutes: 15
     
-    - name: wait for the McAfee WebGateway Appliance to reboot
+    - name: Waiting to establish SSH connection to the McAfee Web Gateway
       wait_for_connection:
         connect_timeout: 20
         sleep: 5

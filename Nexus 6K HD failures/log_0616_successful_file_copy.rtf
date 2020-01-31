@@ -1,0 +1,300 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww20100\viewh11980\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 am3-opc-c4r410-acc-1# dir volatile:\
+    2835023    Jun 17 01:52:23 2019  nuova-or-dplug-mzg.7.0.8.N1.1a.bin\
+\
+Usage for volatile://sup-local\
+    2846720 bytes used\
+  154439680 bytes free\
+  157286400 bytes total\
+am3-opc-c4r410-acc-1#\
+\
+\
+TASK [Copy the dplugin file nuova-or-dplug-mzg.7.0.8.N1.1a.bin to NXOS device] ***************************************************************************************************************************************************************\
+task path: /ansible/playbooks/saurasar/test.yml:21\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> connection transport is cli\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> using connection plugin network_cli (was local)\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> starting connection from persistent connection plugin\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> found existing local domain socket, using it!\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> updating play_context for connection\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> authorizing connection\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com>\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> local domain socket path is /root/.ansible/pc/7d39582731\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> socket_path: /root/.ansible/pc/7d39582731\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> ESTABLISH LOCAL CONNECTION FOR USER: root\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'echo ~root && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571 `" && echo ansible-tmp-1560736322.861318-121256136596571="` echo /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571 `" ) && sleep 0'\
+Using module file /usr/lib/python3.7/site-packages/ansible/modules/network/nxos/nxos_file_copy.py\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> PUT /root/.ansible/tmp/ansible-local-791ys2vwccc/tmpetrj99yd TO /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571/AnsiballZ_nxos_file_copy.py\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571/ /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571/AnsiballZ_nxos_file_copy.py && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c '/usr/bin/python /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571/AnsiballZ_nxos_file_copy.py && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1560736322.861318-121256136596571/ > /dev/null 2>&1 && sleep 0'\
+[DEPRECATION WARNING]: Param 'host' is deprecated. See the module docs for more information. This feature will be removed in version 2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.\
+[DEPRECATION WARNING]: Param 'username' is deprecated. See the module docs for more information. This feature will be removed in version 2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.\
+[DEPRECATION WARNING]: Param 'password' is deprecated. See the module docs for more information. This feature will be removed in version 2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.\
+[DEPRECATION WARNING]: Param 'auth_pass' is deprecated. See the module docs for more information. This feature will be removed in version 2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.\
+[DEPRECATION WARNING]: Param 'timeout' is deprecated. See the module docs for more information. This feature will be removed in version 2.9. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.\
+changed: [am3-opc-c4r410-acc-1.nldc1.oraclecloud.com] => \{\
+    "changed": true,\
+    "file_system": "volatile:",\
+    "invocation": \{\
+        "module_args": \{\
+            "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+            "authorize": true,\
+            "connect_ssh_port": 22,\
+            "file_pull": false,\
+            "file_pull_timeout": 300,\
+            "file_system": "volatile:",\
+            "host": "am3-opc-c4r410-acc-1.nldc1.oraclecloud.com",\
+            "local_file": "./NXOSdplugin/nuova-or-dplug-mzg.7.0.8.N1.1a.bin",\
+            "local_file_directory": null,\
+            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+            "port": null,\
+            "provider": \{\
+                "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+                "authorize": true,\
+                "host": "am3-opc-c4r410-acc-1.nldc1.oraclecloud.com",\
+                "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+                "port": null,\
+                "ssh_keyfile": null,\
+                "timeout": 300,\
+                "transport": "cli",\
+                "use_proxy": true,\
+                "use_ssl": null,\
+                "username": "net_service",\
+                "validate_certs": null\
+            \},\
+            "remote_file": "nuova-or-dplug-mzg.7.0.8.N1.1a.bin",\
+            "remote_scp_server": null,\
+            "remote_scp_server_password": null,\
+            "remote_scp_server_user": null,\
+            "ssh_keyfile": null,\
+            "timeout": 300,\
+            "transport": "cli",\
+            "use_proxy": true,\
+            "use_ssl": null,\
+            "username": "net_service",\
+            "validate_certs": null\
+        \}\
+    \},\
+    "local_file": "./NXOSdplugin/nuova-or-dplug-mzg.7.0.8.N1.1a.bin",\
+    "remote_file": "nuova-or-dplug-mzg.7.0.8.N1.1a.bin",\
+    "transfer_status": "Sent"\
+\}\
+META: ran handlers\
+META: ran handlers\
+\
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************\
+am3-opc-c4r410-acc-1.nldc1.oraclecloud.com : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0\
+\
+root@64b52cc16cdf:/ansible/playbooks/saurasar#\
+\
+\
+\
+\
+\
+root@64b52cc16cdf:/ansible/playbooks/saurasar/NXOSdplugin# ls\
+dplugin_bash_script.sh                 nuova-or-dplug-mzg.6.0.2.N2.1b.29.bin  nuova-or-dplug-mzg.7.0.2.N1.0.177.bin  nuova-or-dplug-mzg.7.0.8.N1.1a.bin  nuova-or-dplug-mzg.7.1.4.N1.1.bin\
+nuova-or-dplug-mzg.5.0.2.N2.1.bin      nuova-or-dplug-mzg.6.0.2.N2.2.49.bin   nuova-or-dplug-mzg.7.0.5.N1.1a.bin     nuova-or-dplug-mzg.7.1.0.N1.1a.bin  nuova-or-dplug-mzg.7.3.0.N1.1.bin\
+nuova-or-dplug-mzg.5.1.3.N2.1.bin      nuova-or-dplug-mzg.6.0.2.N2.3.57.bin   nuova-or-dplug-mzg.7.0.7.N1.1.bin      nuova-or-dplug-mzg.7.1.0.N1.1b.bin  nuova-or-dplug-mzg.7.3.3.N1.1.bin\
+nuova-or-dplug-mzg.6.0.2.N2.0.184.bin  nuova-or-dplug-mzg.6.0.2.N2.6.bin      nuova-or-dplug-mzg.7.0.8.N1.1.bin      nuova-or-dplug-mzg.7.1.3.N1.1.bin\
+\
+\
+\
+\
+\
+TASK [Copying the mitigation script to NXOS device] ******************************************************************************************************************************************************************************************\
+task path: /ansible/playbooks/saurasar/test.yml:31\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> connection transport is cli\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> using connection plugin network_cli (was local)\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> starting connection from persistent connection plugin\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> found existing local domain socket, using it!\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> Response received, triggered 'persistent_buffer_read_timeout' timer of 0.1 seconds\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> updating play_context for connection\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com>\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> local domain socket path is /root/.ansible/pc/afd70caf30\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> socket_path: /root/.ansible/pc/afd70caf30\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> ESTABLISH LOCAL CONNECTION FOR USER: root\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'echo ~root && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239 `" && echo ansible-tmp-1560739267.1954558-223966310761239="` echo /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239 `" ) && sleep 0'\
+Using module file /usr/lib/python3.7/site-packages/ansible/modules/network/nxos/nxos_file_copy.py\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> PUT /root/.ansible/tmp/ansible-local-9065d2to_07/tmpq8epcq22 TO /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239/AnsiballZ_nxos_file_copy.py\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239/ /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239/AnsiballZ_nxos_file_copy.py && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c '/usr/bin/python /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239/AnsiballZ_nxos_file_copy.py && sleep 0'\
+<am3-opc-c4r410-acc-1.nldc1.oraclecloud.com> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1560739267.1954558-223966310761239/ > /dev/null 2>&1 && sleep 0'\
+changed: [am3-opc-c4r410-acc-1.nldc1.oraclecloud.com] => \{\
+    "changed": true,\
+    "file_system": "volatile:",\
+    "invocation": \{\
+        "module_args": \{\
+            "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+            "authorize": true,\
+            "connect_ssh_port": 22,\
+            "file_pull": false,\
+            "file_pull_timeout": 300,\
+            "file_system": "volatile:",\
+            "host": "am3-opc-c4r410-acc-1.nldc1.oraclecloud.com",\
+            "local_file": "./NXOSdplugin/dplugin_bash_script.sh",\
+            "local_file_directory": null,\
+            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+            "port": null,\
+            "provider": \{\
+                "auth_pass": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+                "authorize": true,\
+                "host": "am3-opc-c4r410-acc-1.nldc1.oraclecloud.com",\
+                "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",\
+                "port": null,\
+                "ssh_keyfile": null,\
+                "timeout": 300,\
+                "transport": "cli",\
+                "use_proxy": true,\
+                "use_ssl": null,\
+                "username": "net_service",\
+                "validate_certs": null\
+            \},\
+            "remote_file": "dplugin_bash_script.sh",\
+            "remote_scp_server": null,\
+            "remote_scp_server_password": null,\
+            "remote_scp_server_user": null,\
+            "ssh_keyfile": null,\
+            "timeout": 300,\
+            "transport": "cli",\
+            "use_proxy": true,\
+            "use_ssl": null,\
+            "username": "net_service",\
+            "validate_certs": null\
+        \}\
+    \},\
+    "local_file": "./NXOSdplugin/dplugin_bash_script.sh",\
+    "remote_file": "dplugin_bash_script.sh",\
+    "transfer_status": "Sent"\
+\}\
+META: ran handlers\
+META: ran handlers\
+\
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************\
+am3-opc-c4r410-acc-1.nldc1.oraclecloud.com : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0\
+\
+root@64b52cc16cdf:/ansible/playbooks/saurasar#\
+\
+\
+\
+\
+am3-opc-c4r410-acc-1# dir volatile:\
+        686    Jun 17 02:41:23 2019  dplugin_bash_script.sh\
+    2835023    Jun 17 02:41:05 2019  nuova-or-dplug-mzg.7.0.8.N1.1a.bin\
+\
+Usage for volatile://sup-local\
+    2850816 bytes used\
+  154435584 bytes free\
+  157286400 bytes total\
+\
+\
+\
+\
+TASK [Loading the dplugin linux kernel on the chassis] ***************************************************************************************************************************************************************************************\
+task path: /ansible/playbooks/saurasar/test.yml:41\
+ [WARNING]: Platform linux on host am3-opc-c4r410-acc-1.nldc1.oraclecloud.com is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change this. See\
+https://docs.ansible.com/ansible/2.8/reference_appendices/interpreter_discovery.html for more information.\
+\
+ok: [am3-opc-c4r410-acc-1.nldc1.oraclecloud.com] => \{"ansible_facts": \{"discovered_interpreter_python": "/usr/bin/python"\}, "changed": false, "stdout": ["Loading plugin version 7.0(8)N1(1a)\\n###############################################################\\n  Warning: debug-plugin is for engineering internal use only!\\n  For security reason, plugin image has been deleted.\\n###############################################################\\nSuccessfully loaded debug-plugin!!!"], "stdout_lines": [["Loading plugin version 7.0(8)N1(1a)", "###############################################################", "  Warning: debug-plugin is for engineering internal use only!", "  For security reason, plugin image has been deleted.", "###############################################################", "Successfully loaded debug-plugin!!!"]]\}\
+\
+TASK [debug] *********************************************************************************************************************************************************************************************************************************\
+task path: /ansible/playbooks/saurasar/test.yml:47\
+ok: [am3-opc-c4r410-acc-1.nldc1.oraclecloud.com] => \{\
+    "result": \{\
+        "ansible_facts": \{\
+            "discovered_interpreter_python": "/usr/bin/python"\
+        \},\
+        "changed": false,\
+        "failed": false,\
+        "stdout": [\
+            "Loading plugin version 7.0(8)N1(1a)\\n###############################################################\\n  Warning: debug-plugin is for engineering internal use only!\\n  For security reason, plugin image has been deleted.\\n###############################################################\\nSuccessfully loaded debug-plugin!!!"\
+        ],\
+        "stdout_lines": [\
+            [\
+                "Loading plugin version 7.0(8)N1(1a)",\
+                "###############################################################",\
+                "  Warning: debug-plugin is for engineering internal use only!",\
+                "  For security reason, plugin image has been deleted.",\
+                "###############################################################",\
+                "Successfully loaded debug-plugin!!!"\
+            ]\
+        ],\
+        "warnings": [\
+            "Platform linux on host am3-opc-c4r410-acc-1.nldc1.oraclecloud.com is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change this. See https://docs.ansible.com/ansible/2.8/reference_appendices/interpreter_discovery.html for more information."\
+        ]\
+    \}\
+\}\
+META: ran handlers\
+META: ran handlers\
+\
+PLAY RECAP ***********************************************************************************************************************************************************************************************************************************\
+am3-opc-c4r410-acc-1.nldc1.oraclecloud.com : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0\
+\
+\
+\
+ERROR:\
+\
+Linux(debug)# bash /volatile/dplugin_bash_script.sh\
+mount: /dev/sdb4 is not a valid block device\
+mount: /dev/sdb5 is not a valid block device\
+mount: /dev/sdb6 is not a valid block device\
+mount: /dev/sdb3 is not a valid block device\
+Linux(debug)#\
+\
+\
+Linux(debug)# mount -t ext3 -o rw,nodev,noatime /dev/sdb4 /mnt/pss\
+mount: /dev/sdb4 is not a valid block device\
+Linux(debug)# mount -t ext3 -o rw,nodev,noatime /dev/sdb5 /mnt/cfg/0\
+mount: /dev/sdb5 is not a valid block device\
+Linux(debug)# mount -t ext3 -o rw,nodev,noatime /dev/sdb6 /mnt/cfg/1\
+mount: /dev/sdb6 is not a valid block device\
+Linux(debug)# mount -t ext3 -o rw,nodev,noatime /dev/sdb3 /bootflash\
+mount: /dev/sdb3 is not a valid block device\
+\
+am3-opc-c4r410-acc-1# copy run startup-config\
+[########################################] 100%\
+Copy complete, now saving to disk (please wait)...\
+\
+\
+\
+$$$$$$ testing on another switch $$$$$$$$$$$$\
+\
+\
+Linux(debug)# fdisk -l\
+\
+Disk /dev/sda: 8015 MB, 8015314944 bytes\
+43 heads, 43 sectors/track, 8466 cylinders\
+Units = cylinders of 1849 * 512 = 946688 bytes\
+Disk identifier: 0xec9ec502\
+\
+   Device Boot      Start         End      Blocks   Id  System\
+/dev/sda1               1          18       16619+  83  Linux\
+/dev/sda2              19         273      235747+   5  Extended\
+/dev/sda3             402        8466     7456092+  83  Linux\
+/dev/sda4             274         401      118336   83  Linux\
+/dev/sda5              19         146      118314+  83  Linux\
+/dev/sda6             147         273      117390   83  Linux\
+\
+Partition table entries are not in disk order\
+Linux(debug)#\
+\
+\
+\
+}
